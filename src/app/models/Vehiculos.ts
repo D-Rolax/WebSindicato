@@ -1,8 +1,9 @@
 export interface Vehiculo{
-    Id: number;
-    Placa: string;
-    Modelo: string;
-    Tipo:string;
-    Marca:string;
-    Color:string;
+    id: number;
+    placa: string;
+    modelo: string;
+    tipo:string;
+    marca:string;
+    color:string;
+    estado:string
 }

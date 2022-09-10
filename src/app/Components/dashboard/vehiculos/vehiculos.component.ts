@@ -1,3 +1,5 @@
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { DialogDeleteComponent } from './../../../common/delete/dialogdelete.component';
 import { Component, OnInit, ViewChild} from '@angular/core';
 import { ApivehiculoService } from 'src/app/services/apivehiculo.service';
 import { Response } from 'src/app/models/response';
@@ -23,7 +25,8 @@ export class VehiculosComponent implements OnInit{
 
   constructor(
     private apiVehiculo: ApivehiculoService,
-    public dialog:MatDialog) { 
+    public dialog:MatDialog,
+    public snackBar:MatSnackBar) { 
   }
 
   ngOnInit(): void {
@@ -34,7 +37,6 @@ export class VehiculosComponent implements OnInit{
    }
   getVehiculos(){
     this.apiVehiculo.getVehiculo().subscribe(response=>{
-      console.log(response)
       if(response.exito==1)
       {
         this.dataSource.data=response.data;
@@ -63,4 +65,22 @@ export class VehiculosComponent implements OnInit{
       this.getVehiculos();
     });
   }
+  delete(vehiculo:Vehiculo){
+    const dialogRef = this.dialog.open(DialogDeleteComponent,{
+      width: this.width,
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        this.apiVehiculo.delete(vehiculo.id).subscribe(response=>{
+          if(response.exito==1){
+            this.snackBar.open('Vehiculo eliminado con exito','',{
+              duration:2000
+            });
+            this.getVehiculos();
+          }
+        })
+      }
+    });
+  }
 }
+

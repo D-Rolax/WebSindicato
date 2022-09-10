@@ -22,16 +22,16 @@ export class ApivehiculoService {
   ) { 
 
   }
- getVehiculo(): Observable<Response> {
-  return this._http.get<Response>(this.url);
-}
-  add(vehiculo: Vehiculo): Observable<Response>{
+    getVehiculo(): Observable<Response> {
+    return this._http.get<Response>(this.url);
+  }
+    add(vehiculo: Vehiculo): Observable<Response>{
      return this._http.post<Response>(this.url, vehiculo, httpOptions)
   }
-  edit(vehiculo: Vehiculo): Observable<Response>{
+    edit(vehiculo: Vehiculo): Observable<Response>{
     return this._http.put<Response>(this.url, vehiculo, httpOptions)
   }
-  delete(id: number): Observable<Response>{
-  return this._http.delete<Response>(`${this.url}/${id}`)
+    delete(id: number): Observable<Response>{
+    return this._http.delete<Response>(`${this.url}/${id}`)
   }
 }

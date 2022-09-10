@@ -1,5 +1,7 @@
+import { Response } from './../../models/response';
+import { ApiauthService } from './../../services/apiauth.service';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
@@ -9,45 +11,48 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  form:FormGroup;
   loading=false;
-  constructor(private fb:FormBuilder,private _snackBar: MatSnackBar, private router: Router) {
-    this.form=this.fb.group({
-      usuario:['',Validators.required],
-      password:['',Validators.required]
-    })
+  response!:Response;
+  public loginForm=this.formBuilder.group({
+    email:['',Validators.required],
+    password:['',Validators.required]
+  });
+  constructor(public apiauthService:ApiauthService, private fb:FormBuilder,private _snackBar: MatSnackBar, 
+    private router: Router,private formBuilder:FormBuilder) {
+
+    if (this.apiauthService.usuarioData) {
+      this.loading=true;
+      setTimeout(()=>{
+     
+        this.router.navigate(['dashboard']);
+      },1500);
+    }
    }
 
   ngOnInit(): void {
+
   }
-  ingresar(){
-    console.log(this.form)
-    const usuario=this.form.value.usuario;
-    const paswword=this.form.value.password;
-    if(usuario=='David' && paswword=='123')
-    {
-      //redireccionamos al dasboard
-      this.fakLoading(); 
-      this.form.reset();
-    }else
-    {
-      //mostramos un mensaje de error
-      this.error(); 
-    }
+
+  login(){
+    this.apiauthService.login(this.loginForm.value).subscribe(res=>{
+      this.ingresoPrincipal();
+      },error =>{
+        this.MensajeError();
+      }
+    );
   }
-  error()
-  {
-      this._snackBar.open('Usuario o contraseña ingresado son invalidos','',{
-        duration:5000,
-        horizontalPosition:'center',
-        verticalPosition:'bottom'
-      })
-  }
-  fakLoading(){
+  ingresoPrincipal(){
     this.loading=true;
     setTimeout(()=>{
-   
       this.router.navigate(['dashboard']);
     },1500);
+    this.loginForm.reset;
+  }
+  MensajeError(){
+    this._snackBar.open("Usuario o contraseña incorrecta",'',{
+      duration:5000,
+      horizontalPosition:'center',
+      verticalPosition:'bottom'
+    });
   }
 }

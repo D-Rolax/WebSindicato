@@ -2,30 +2,39 @@
 <div mat-dialog-content>
     <mat-form-field>
         <mat-label>Placa</mat-label>
-        <input matInput [(ngModel)]="placa">
+        <input matInput [(ngModel)]="placa" autocomplete="off">
     </mat-form-field><br>
 
     <mat-form-field>
         <mat-label>Modelo</mat-label>
-        <input matInput [(ngModel)]="modelo">
+        <input matInput [(ngModel)]="modelo" autocomplete="off">
     </mat-form-field><br>
 
     <mat-form-field>
         <mat-label>Tipo</mat-label>
-        <input matInput [(ngModel)]="tipo">
+        <input matInput [(ngModel)]="tipo" autocomplete="off">
     </mat-form-field><br>
 
     <mat-form-field>
         <mat-label>Marca</mat-label>
-        <input matInput [(ngModel)]="marca">
+        <input matInput [(ngModel)]="marca" autocomplete="off">
     </mat-form-field><br>
 
     <mat-form-field>
         <mat-label>Color</mat-label>
-        <input matInput [(ngModel)]="color">
+        <input matInput [(ngModel)]="color" autocomplete="off">
+    </mat-form-field>
+
+    <mat-form-field *ngIf="vehiculo!=null">
+        <mat-label>Estado</mat-label>
+        <mat-select [(ngModel)]="estado">
+          <mat-option *ngFor="let item of Estado" [value]="item">
+            {{item}}
+          </mat-option>
+        </mat-select>
     </mat-form-field>
 </div>
 <div mat-dialog-actions>
-    <button mat-raised-button color="primary" (click)="addCliente()">Guardar</button>
+    <button mat-raised-button color="primary" (click)="vehiculo!=null? editVehiculo(): addVehiculo()">Guardar</button>
     <button mat-raised-button (click)="close()">Cancelar</button>
 </div>

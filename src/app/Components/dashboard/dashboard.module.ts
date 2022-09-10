@@ -16,12 +16,12 @@ import { VehiculosComponent } from './vehiculos/vehiculos.component';
     InicioComponent,
     NavbarComponent,
     ReportesComponent,
-    VehiculosComponent
+    VehiculosComponent,
   ],
   imports: [
     CommonModule,
     DashboardRoutingModule,
-    SharedModule
+    SharedModule,
   ]
 })
 export class DashboardModule { }

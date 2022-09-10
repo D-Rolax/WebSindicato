@@ -20,6 +20,8 @@ import{MatTableModule} from '@angular/material/table'
 import {MatTooltipModule} from '@angular/material/tooltip'; 
 import{MatDialogModule} from '@angular/material/dialog';
 import {MatPaginatorModule} from '@angular/material/paginator'; 
+import {MatSelectModule} from '@angular/material/select'; 
+import{MatCardModule} from '@angular/material/card'
 
 @NgModule({
   declarations: [],
@@ -40,7 +42,9 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MatTableModule,
     MatTooltipModule,
     MatDialogModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatSelectModule,
+    MatCardModule
   ],
   exports:[
     MatSidenavModule,
@@ -58,7 +62,9 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MatTableModule,
     MatTooltipModule,
     MatDialogModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatSelectModule,
+    MatCardModule
   ]
 })
 export class SharedModule { }

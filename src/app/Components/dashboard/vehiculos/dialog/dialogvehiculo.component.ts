@@ -13,28 +13,46 @@ export class DialogVehiculoComponent{
     public tipo!:string;
     public marca!:string;
     public color!:string;
+    public estado!:string;
+    Estado: any[] = ['Activo','Inactivo']
 
     constructor(public Dialogref:MatDialogRef<DialogVehiculoComponent>,
-        public apiCliente: ApivehiculoService,
+        public apiVehiculo: ApivehiculoService,
         public snackBar: MatSnackBar,
         @Inject(MAT_DIALOG_DATA) public vehiculo:Vehiculo,
         ){
             if(this.vehiculo !== null)
             {
-                this.placa=vehiculo.Placa;
-                this.modelo=vehiculo.Modelo;
-                this.tipo=vehiculo.Tipo;
-                this.marca=vehiculo.Marca;
-                this.color=vehiculo.Color;
+                this.placa=vehiculo.placa;
+                this.modelo=vehiculo.modelo;
+                this.tipo=vehiculo.tipo;
+                this.marca=vehiculo.marca;
+                this.color=vehiculo.color;
+                this.estado=vehiculo.estado;
             }
         }
+    Ocultar(){
+
+    }
     close(){
         this.Dialogref.close();
     }
-    addCliente(){
-        const vehiculo:Vehiculo={Id:0,Placa:this.placa, Modelo:this.modelo,Tipo:this.tipo,
-            Marca:this.marca,Color:this.color};
-        this.apiCliente.add(vehiculo).subscribe(response=>{
+    editVehiculo(){
+        const vehiculo:Vehiculo={id:this.vehiculo.id,placa:this.placa, modelo:this.modelo,tipo:this.tipo,
+            marca:this.marca,color:this.color,estado:this.estado};
+        this.apiVehiculo.edit(vehiculo).subscribe(response=>{
+            if(response.exito==1){
+                this.Dialogref.close(); 
+                this.snackBar.open('Vehiculo editado con exito','',{
+                    duration:2000
+                });
+            }
+        })
+    }
+    addVehiculo(){
+        const vehiculo:Vehiculo={id:0,placa:this.placa, modelo:this.modelo,tipo:this.tipo,
+            marca:this.marca,color:this.color,estado:this.estado};
+        this.apiVehiculo.add(vehiculo).subscribe(response=>{
             if(response.exito==1){
                 this.Dialogref.close(); 
                 this.snackBar.open('Vehiculo insertado con exito','',{

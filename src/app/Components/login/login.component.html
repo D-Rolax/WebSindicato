@@ -2,21 +2,23 @@
     <div class="login">
         <mat-spinner *ngIf="loading" class="spinner" diameter="50"></mat-spinner>
 
-        <form *ngIf="!loading" [formGroup]="form" (ngSubmit)="ingresar()">
-            <img src="../../../assets/img/user.png" width="50%">
-            <h1>Login</h1>
-            <mat-form-field class="ancho" appearance="fill">
-                <mat-label>Usuario</mat-label>
-                <input type="text" matInput formControlName="usuario">
-            </mat-form-field>
-            <mat-form-field class="ancho" appearance="fill">
-                <mat-label>Contraseña</mat-label>
-                <input type="password" matInput formControlName="password">
-            </mat-form-field>
-            <br>
-            <button type="submit" class="ancho button" mat-raised-button color="primary" [disabled]="form.invalid">
-                Ingreso</button>
-        </form>
+        <mat-card-content *ngIf="!loading">
+            <form [formGroup]="loginForm" (ngSubmit)="login()">
+                <img src="../../../assets/img/user.png" width="50%">
+                <h1>Login</h1>
+                <mat-form-field class="ancho" appearance="fill">
+                    <mat-label>Email</mat-label>
+                    <input type="text" matInput formControlName="email">
+                </mat-form-field>
+                <mat-form-field class="ancho" appearance="fill">
+                    <mat-label>Contraseña</mat-label>
+                    <input type="password" matInput formControlName="password">
+                </mat-form-field>
+                <br>
+                <button type="submit" [disabled]="!loginForm.valid" class="ancho button" mat-raised-button color="primary">
+                    Ingreso</button>
+            </form>
+        </mat-card-content>
     </div>
 </div>
 
