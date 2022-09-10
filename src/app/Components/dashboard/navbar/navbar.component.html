@@ -1,0 +1,42 @@
+<mat-toolbar>
+  <mat-toolbar-row>
+    <button mat-icon-button *ngIf="sidenav.mode==='over'">
+      <mat-icon (click)="sidenav.toggle();">menu</mat-icon>
+    </button>
+    <h1>AppSindicato</h1>
+    <span class="example-spacer"></span>
+    <button mat-icon-button>
+      <mat-icon routerLink="/logaut">logout</mat-icon>
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+<mat-sidenav-container>
+  <mat-sidenav #sidenav="matSidenav">
+    <img class="avatar mat-elevation-z8" src="../../../../assets/img/usuario.png">
+
+    <h4 class="name">Jhon Smith</h4>
+    <p class="designation">Software Engineer</p>
+    <div>
+      <mat-divider></mat-divider>
+        <button mat-button [routerLink]="['/dashboard']" class="menu-button" >
+          <mat-icon>home</mat-icon>
+          <span>Inicio</span>
+        </button>
+        <button mat-button [routerLink]="['/dashboard/vehiculos']" class="menu-button">
+          <mat-icon>airport_shuttle</mat-icon>
+          <span>Vehiculos</span>
+        </button>
+        <button mat-button [routerLink]="['/dashboard/reportes']" class="menu-button">
+          <mat-icon>analytics</mat-icon>
+          <span>Reportes</span>
+        </button>
+      <mat-divider></mat-divider>
+    </div>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="content mat-elevation-z4">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
