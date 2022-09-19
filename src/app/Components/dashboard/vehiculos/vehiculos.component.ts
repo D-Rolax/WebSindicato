@@ -17,7 +17,7 @@ import { Vehiculo } from 'src/app/models/Vehiculos';
 })
 export class VehiculosComponent implements OnInit{
 
-  readonly width: string='300px';
+  readonly width: string='800px';
   public columnas: string[]=['Placa','Modelo','Tipo','Marca','Color','Estado','Fecha','acciones'];
   dataSource= new MatTableDataSource<Vehiculo>([]);
 
@@ -67,7 +67,7 @@ export class VehiculosComponent implements OnInit{
   }
   delete(vehiculo:Vehiculo){
     const dialogRef = this.dialog.open(DialogDeleteComponent,{
-      width: this.width,
+      width: '250px',
     });
     dialogRef.afterClosed().subscribe(result => {
       if(result){
@@ -78,8 +78,19 @@ export class VehiculosComponent implements OnInit{
             });
             this.getVehiculos();
           }
+          else{
+            this.MensajeError();
+          }
         })
       }
+    });
+    ;
+  }
+  MensajeError(){
+    this.snackBar.open("Primero debe eliminar a sus Afiliados en la opcion editar",'',{
+      duration:5000,
+      horizontalPosition:'center',
+      verticalPosition:'bottom'
     });
   }
 }

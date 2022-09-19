@@ -6,14 +6,18 @@
             <form [formGroup]="loginForm" (ngSubmit)="login()">
                 <img src="../../../assets/img/user.png" width="50%">
                 <h1>Login</h1>
-                <mat-form-field class="ancho" appearance="fill">
-                    <mat-label>Email</mat-label>
-                    <input type="text" matInput formControlName="email">
-                </mat-form-field>
-                <mat-form-field class="ancho" appearance="fill">
-                    <mat-label>Contraseña</mat-label>
-                    <input type="password" matInput formControlName="password">
-                </mat-form-field>
+                <div class="input-group mb-3">
+                    <span class="input-group-text">
+                        <mat-icon>mail</mat-icon>
+                    </span>
+                    <input type="text" class="form-control" placeholder="Ingrese su correo" formControlName="email">
+                  </div>
+
+                  <div class="input-group mb-3">
+                    <span class="input-group-text"><mat-icon>lock</mat-icon></span>
+                    <input type="password" class="form-control" placeholder="Ingrese su contraseña" formControlName="password">
+                  </div>
+                                    
                 <br>
                 <button type="submit" [disabled]="!loginForm.valid" class="ancho button" mat-raised-button color="primary">
                     Ingreso</button>

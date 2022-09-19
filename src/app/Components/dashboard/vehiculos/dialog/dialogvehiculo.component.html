@@ -1,40 +1,122 @@
-<h1 mat-dialog-title>{{ vehiculo!=null ? 'Editar vehiculo':'Nuevo vehiculo'}}</h1>
-<div mat-dialog-content>
-    <mat-form-field>
-        <mat-label>Placa</mat-label>
-        <input matInput [(ngModel)]="placa" autocomplete="off">
-    </mat-form-field><br>
-
-    <mat-form-field>
-        <mat-label>Modelo</mat-label>
-        <input matInput [(ngModel)]="modelo" autocomplete="off">
-    </mat-form-field><br>
-
-    <mat-form-field>
-        <mat-label>Tipo</mat-label>
-        <input matInput [(ngModel)]="tipo" autocomplete="off">
-    </mat-form-field><br>
-
-    <mat-form-field>
-        <mat-label>Marca</mat-label>
-        <input matInput [(ngModel)]="marca" autocomplete="off">
-    </mat-form-field><br>
-
-    <mat-form-field>
-        <mat-label>Color</mat-label>
-        <input matInput [(ngModel)]="color" autocomplete="off">
-    </mat-form-field>
-
-    <mat-form-field *ngIf="vehiculo!=null">
-        <mat-label>Estado</mat-label>
-        <mat-select [(ngModel)]="estado">
-          <mat-option *ngFor="let item of Estado" [value]="item">
-            {{item}}
-          </mat-option>
-        </mat-select>
-    </mat-form-field>
-</div>
-<div mat-dialog-actions>
-    <button mat-raised-button color="primary" (click)="vehiculo!=null? editVehiculo(): addVehiculo()">Guardar</button>
-    <button mat-raised-button (click)="close()">Cancelar</button>
+<div mat-dialog-content class="content">
+    <mat-card style="margin-bottom:10px; background-color: #f5f5f5;">
+        <!-- <h5 mat-dialog-title>{{ vehiculo!=null ? 'Editar vehiculo':'Ingrese los datos del vehiculo'}}</h5> -->
+        <label for="exampleFormControlInput1" class="form-label">Ingrese los datos del vehiculo</label>
+        <mat-grid-list cols="3" rowHeight="70px">
+            <mat-grid-tile [colspan]="1" [rowspan]="1" >
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Placa</mat-label>
+                    <input matInput [(ngModel)]="placa" autocomplete="off">
+                </mat-form-field><br>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="1" >
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Modelo</mat-label>
+                    <input matInput [(ngModel)]="modelo" autocomplete="off">
+                </mat-form-field><br>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="1" >
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Tipo</mat-label>
+                    <input matInput [(ngModel)]="tipo" autocomplete="off">
+                </mat-form-field><br>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="1" >
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Marca</mat-label>
+                    <input matInput [(ngModel)]="marca" autocomplete="off">
+                </mat-form-field><br>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="1" >
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Color</mat-label>
+                    <input matInput [(ngModel)]="color" autocomplete="off">
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="1" >
+                <mat-form-field *ngIf="vehiculo!=null" class="example-full-width" appearance="fill">
+                    <mat-label>Estado</mat-label>
+                    <mat-select [(ngModel)]="estado">
+                      <mat-option *ngFor="let item of Estado" [value]="item">
+                        {{item}}
+                      </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </mat-card>  
+    <mat-card style=" background-color: #f5f5f5;">
+        <label for="exampleFormControlInput1" class="form-label">Ingrese los datos del afiliado</label>
+        <button mat-raised-button color="primary">Agregar Afiliados</button>
+        <form *ngIf="!vehiculo" [formGroup]="afiliadosForm" (ngSubmit)="addAfiliados()">
+        <mat-grid-list cols="3" rowHeight="70px">
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Nombres</mat-label>
+                    <input type="text" matInput formControlName="nombres" autocomplete="off">
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="1" >
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Apellidos</mat-label>
+                    <input type="text" matInput formControlName="apellidos" autocomplete="off">
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Ci</mat-label>
+                    <input type="number" matInput formControlName="ci" autocomplete="off">
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Direccion</mat-label>
+                    <textarea matInput formControlName="direccion"></textarea>
+                  </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Fecha de Nacimiento</mat-label>
+                    <input type="date" matInput formControlName="fechaNacimiento" autocomplete="off">
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+                <button type="submit" [disabled]="!afiliadosForm.valid" mat-raised-button color="primary">+</button>
+            </mat-grid-tile>
+        </mat-grid-list>
+        </form>
+        <p *ngIf="afiliadosForm.valid" class="text-center">Listado de Afiliados</p>
+       <div class="mat-elevation-z2">
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Nombres</th>
+                <th>Apellidos</th>
+                <th>Ci</th>
+                <th>Direccion</th>
+                <th>Fecha de Nacimiento</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of afiliados; let i=index;">
+                    <td>{{item.nombres}}</td>
+                    <td>{{item.apellidos}}</td>
+                    <td>{{item.ci}}</td>
+                    <td>{{item.direccion}}</td>
+                    <td>{{item.fechaNacimiento}}</td>
+                    <td>
+                        <a (click)="vehiculo!=null? delete(item,i): quitarAfiliado(i)" style="color: #e15639" matTooltip="Quitar Afiliado">
+                        <mat-icon>do_not_disturb_on</mat-icon></a>
+                    </td>
+                </tr>
+            </tbody>
+          </table>
+       </div>
+    <div class="d-flex justify-content-center">
+        <button style="width: 100%; margin-right:7px;" mat-raised-button color="primary" (click)="vehiculo!=null? editVehiculo(): addVehiculo()">
+            Guardar</button>
+        <button style="width: 100%; margin-left:7px;" mat-raised-button (click)="close()">Cancelar</button>
+    </div>  
+    </mat-card> 
 </div>

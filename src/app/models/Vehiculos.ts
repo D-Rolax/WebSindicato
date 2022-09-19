@@ -1,3 +1,6 @@
+import { Afiliado } from './afiliado';
+
+
 export interface Vehiculo{
     id: number;
     placa: string;
@@ -5,5 +8,6 @@ export interface Vehiculo{
     tipo:string;
     marca:string;
     color:string;
-    estado:string
+    estado:string;
+    afiliados:Afiliado[];
 }

@@ -22,6 +22,8 @@ import{MatDialogModule} from '@angular/material/dialog';
 import {MatPaginatorModule} from '@angular/material/paginator'; 
 import {MatSelectModule} from '@angular/material/select'; 
 import{MatCardModule} from '@angular/material/card'
+import {MatGridListModule} from '@angular/material/grid-list'; 
+
 
 @NgModule({
   declarations: [],
@@ -44,7 +46,8 @@ import{MatCardModule} from '@angular/material/card'
     MatDialogModule,
     MatPaginatorModule,
     MatSelectModule,
-    MatCardModule
+    MatCardModule,
+    MatGridListModule
   ],
   exports:[
     MatSidenavModule,
@@ -64,7 +67,8 @@ import{MatCardModule} from '@angular/material/card'
     MatDialogModule,
     MatPaginatorModule,
     MatSelectModule,
-    MatCardModule
+    MatCardModule,
+    MatGridListModule
   ]
 })
 export class SharedModule { }
