@@ -7,9 +7,9 @@ import { Response } from '../models/response';
   providedIn: 'root'
 })
 export class ApiafiliadoService {
-  url:string='https://localhost:44331/api/Afiliado';
+  url:string='https://sindicatoservice.azurewebsites.net/api/Afiliado';
   constructor(private _http:HttpClient) { 
-    
+     
   }
   delete(id:number):Observable<Response>{
     return this._http.delete<Response>(`${this.url}/${id}`)

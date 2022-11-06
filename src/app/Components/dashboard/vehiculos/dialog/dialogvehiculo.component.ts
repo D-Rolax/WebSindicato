@@ -15,15 +15,16 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dial
 })
 export class DialogVehiculoComponent{
 
+    formulario!:Boolean;
     public vehiculos!:Vehiculo;
     public afiliados!:Afiliado[];
 
     public afiliadosForm=this.formBuilder.group({
-        nombres:['',Validators.required],
-        apellidos:['',Validators.required],
-        ci:['',Validators.required],
-        direccion:['',Validators.required],
-        fechaNacimiento:['',Validators.required]
+        nombres:[''],
+        apellidos:[''],
+        ci:[''],
+        direccion:[''],
+        fechaNacimiento:['']
     })
 
     public placa!:string;
@@ -53,25 +54,28 @@ export class DialogVehiculoComponent{
                 this.estado=vehiculo.estado;
                 this.afiliados=vehiculo.afiliados;
             }
-            console.log(this.vehiculo);
         }
     close(){
         this.Dialogref.close();
     }
+    ngOnInit(): void {
+        
+    }
     editVehiculo(){
-        // const vehiculo:Vehiculo={id:this.vehiculo.id,placa:this.placa, modelo:this.modelo,tipo:this.tipo,
-        //     marca:this.marca,color:this.color,estado:this.estado,};
-        // this.apiVehiculo.edit(vehiculo).subscribe(response=>{
-        //     if(response.exito==1){
-        //         this.Dialogref.close(); 
-        //         this.snackBar.open('Vehiculo editado con exito','',{
-        //             duration:2000
-        //         });
-        //     }
-        // })
+        const vehiculo:Vehiculo={id:this.vehiculo.id,placa:this.placa, modelo:this.modelo,tipo:this.tipo,
+            marca:this.marca,color:this.color,estado:this.estado,afiliados:this.afiliados};
+        this.apiVehiculo.edit(vehiculo).subscribe(response=>{
+            if(response.exito==1){
+                this.Dialogref.close(); 
+                this.snackBar.open('Vehiculo editado con exito','',{
+                    duration:2000
+                });
+            }
+        })
     }
     addAfiliados(){  
         this.afiliados.push(this.afiliadosForm.value);
+        this.afiliadosForm.reset();
     }
     addVehiculo(){
         this.vehiculo={id:0,placa:this.placa, modelo:this.modelo,tipo:this.tipo,
@@ -85,6 +89,9 @@ export class DialogVehiculoComponent{
             }
         })
     }
+    mostrarForm():void{
+        this.formulario=true;
+    }
     quitarAfiliado(i:number){
         this.afiliados.splice(i,1 );    
     }
@@ -94,16 +101,20 @@ export class DialogVehiculoComponent{
         });
         dialogRef.afterClosed().subscribe(result => {
             if(result){
-              this.apiAfiliado.delete(afiliados.id).subscribe(response=>{
-                if(response.exito==1){
-                  this.snackBar.open('Afiliado eliminado con exito','',{
-                    duration:2000
-                  });
-                  this.quitarAfiliado(index);
+                if(afiliados.id){
+                    this.apiAfiliado.delete(afiliados.id).subscribe(response=>{
+                        if(response.exito==1){
+                          this.snackBar.open('Afiliado eliminado con exito','',{
+                            duration:2000
+                          });
+                          this.quitarAfiliado(index);
+                        }
+                      });
                 }
-              })
+                else{
+                    this.quitarAfiliado(index);
+                }
             }
           });
-        console.log(afiliados.id)
     }
 }

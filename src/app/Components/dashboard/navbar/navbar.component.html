@@ -3,7 +3,7 @@
     <button mat-icon-button *ngIf="sidenav.mode==='over'">
       <mat-icon (click)="sidenav.toggle();">menu</mat-icon>
     </button>
-    <h1>AppSindicato</h1>
+    <h1>Sindicato de Transporte "Trans Señor de Santigo"</h1>
     <span class="example-spacer"></span>
     <button *ngIf="usuario" mat-icon-button (click)="logaut()">
       <mat-icon routerLink="/logaut">logout</mat-icon>
@@ -14,7 +14,7 @@
   <mat-sidenav #sidenav="matSidenav">
     <img class="avatar mat-elevation-z8" src="../../../../assets/img/usuario.png">
 
-    <h4 class="name">Jhon Smith</h4>
+    <h4 class="name">David Rolando</h4>
     <p class="designation">Software Engineer</p>
     <div>
       <mat-divider></mat-divider>
@@ -25,6 +25,36 @@
         <button mat-button [routerLink]="['/dashboard/vehiculos']" class="menu-button">
           <mat-icon>airport_shuttle</mat-icon>
           <span>Vehiculos</span>
+        </button>
+        <button mat-button [routerLink]="['/dashboard/comunidad']" class="menu-button">
+          <mat-icon><span class="material-symbols-outlined">
+            flag
+            </span></mat-icon>
+          <span>Comunidad</span>
+        </button>
+        <button mat-button [routerLink]="['/dashboard/grupos']" class="menu-button">
+          <mat-icon><span class="material-symbols-outlined">
+            <span class="material-symbols-outlined">
+              groups
+              </span>
+            </span></mat-icon>
+          <span>Grupos</span>
+        </button>
+        <button mat-button [routerLink]="['/dashboard/horarios']" class="menu-button">
+          <mat-icon><span class="material-symbols-outlined">
+            <span class="material-symbols-outlined">
+              schedule
+              </span>
+            </span></mat-icon>
+          <span>Horarios</span>
+        </button>
+        <button mat-button [routerLink]="['/dashboard/usuarios']" class="menu-button">
+          <mat-icon><span class="material-symbols-outlined">
+            <span class="material-symbols-outlined">
+              person
+              </span>
+            </span></mat-icon>
+          <span>Usuarios</span>
         </button>
         <button mat-button [routerLink]="['/dashboard/reportes']" class="menu-button">
           <mat-icon>analytics</mat-icon>

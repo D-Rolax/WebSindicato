@@ -15,7 +15,7 @@ const httpOptions={
 })
 export class ApivehiculoService {
 
-  url: string='https://localhost:44331/api/Vehiculos';
+  url: string='https://sindicatoservice.azurewebsites.net/api/Vehiculos';
 
   constructor(
     private _http: HttpClient

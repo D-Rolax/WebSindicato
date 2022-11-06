@@ -1,0 +1,29 @@
+<p style="color: aliceblue;">Registro Comunidad</p>
+<mat-card>
+    <form [formGroup]="Form" (submit)="addUsuario()">
+        <mat-form-field appearance="fill">
+            <mat-label>Nombre de usuario</mat-label>
+            <input type="text" matInput formControlName="nombre" autocomplete="off">
+        </mat-form-field>
+        <mat-form-field appearance="fill" autocomplete="off">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email">
+          </mat-form-field>
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Password</mat-label>
+            <input type="password" matInput formControlName="password">
+          </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Tipo Ususario</mat-label>
+            <mat-select formControlName="tipoUsuario">
+              <mat-option *ngFor="let item of Usuario" [value]="item">
+                {{item}}
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </form>
+</mat-card>
+<div style="margin-top: 8px;">
+    <button style="width: 122px; margin-right: 4px;" (click)="addUsuario()" type="submit" mat-raised-button color="primary">Guardar</button>
+    <button style="width: 122px;margin-left: 3px;" (click)="close()" mat-raised-button >Cancelar</button>
+</div>

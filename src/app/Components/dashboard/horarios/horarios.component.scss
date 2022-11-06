@@ -1,0 +1,29 @@
+.container{
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+}
+
+table {
+    margin-top: 10px;
+    width: 100%;
+  }
+  mat-toolbar{
+    background-color: #cdcdcd;
+  }
+  td{
+    width: 10%;
+  }
+  .pointer{
+    cursor: pointer;
+  }
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+.mat-form-field{
+  padding-left: 10%;
+  padding-right: 10%;
+}

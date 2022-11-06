@@ -52,7 +52,8 @@ export class LoginComponent implements OnInit {
     this._snackBar.open("Usuario o contraseña incorrecta",'',{
       duration:5000,
       horizontalPosition:'center',
-      verticalPosition:'bottom'
+      verticalPosition:'bottom',
+      panelClass : ['red-snackbar']
     });
   }
 }

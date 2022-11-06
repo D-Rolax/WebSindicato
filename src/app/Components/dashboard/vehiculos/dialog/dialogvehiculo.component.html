@@ -47,8 +47,9 @@
     </mat-card>  
     <mat-card style=" background-color: #f5f5f5;">
         <label for="exampleFormControlInput1" class="form-label">Ingrese los datos del afiliado</label>
-        <button mat-raised-button color="primary">Agregar Afiliados</button>
-        <form *ngIf="!vehiculo" [formGroup]="afiliadosForm" (ngSubmit)="addAfiliados()">
+        <br/>
+        <button *ngIf="!formulario && vehiculo" (click)="mostrarForm()" mat-raised-button style="width: 100%;">Agregar Afiliados</button>
+        <form  *ngIf="!vehiculo || formulario" [formGroup]="afiliadosForm" (ngSubmit)="addAfiliados()">
         <mat-grid-list cols="3" rowHeight="70px">
             <mat-grid-tile [colspan]="1" [rowspan]="1">
                 <mat-form-field class="example-full-width" appearance="fill">
@@ -117,6 +118,6 @@
         <button style="width: 100%; margin-right:7px;" mat-raised-button color="primary" (click)="vehiculo!=null? editVehiculo(): addVehiculo()">
             Guardar</button>
         <button style="width: 100%; margin-left:7px;" mat-raised-button (click)="close()">Cancelar</button>
-    </div>  
-    </mat-card> 
+    </div> 
+    </mat-card>
 </div>

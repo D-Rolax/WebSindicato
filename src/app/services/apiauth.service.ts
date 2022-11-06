@@ -15,7 +15,7 @@ const httpOptions={
     providedIn:'root'
 })
 export class ApiauthService{
-    url: string='https://localhost:44331/api/User/login';
+    url: string='https://sindicatoservice.azurewebsites.net/api/User/login';
 
     private usuarioSubject: BehaviorSubject<Usuario>;
     public usuario!:Observable<Usuario>;

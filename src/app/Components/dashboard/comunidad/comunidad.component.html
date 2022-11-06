@@ -1,0 +1,66 @@
+<div class="container">
+    <mat-toolbar class="mat-elevation-z3">
+        <mat-toolbar-row>
+            <span>Comunidad</span>
+            <mat-form-field appearance="standard">
+                <mat-label>Buscar</mat-label>
+                <input matInput placeholder="Ex. ium" #input>
+            </mat-form-field>
+            <div class="example-spacer"></div>
+           <button (click)="openAdd()" mat-raised-button color="primary">Nuevo</button>
+        </mat-toolbar-row>
+    </mat-toolbar>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z2">
+
+        <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+      
+        <!-- Position Column -->
+        <ng-container matColumnDef="nombre">
+          <th mat-header-cell *matHeaderCellDef> Nombre </th>
+          <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+        </ng-container>
+      
+        <!-- Name Column -->
+        <ng-container matColumnDef="descripcion">
+          <th mat-header-cell *matHeaderCellDef> Descripcion </th>
+          <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
+        </ng-container>
+      
+        <!-- Weight Column -->
+        <ng-container matColumnDef="estado">
+          <th mat-header-cell *matHeaderCellDef> Estado </th>
+          <td mat-cell *matCellDef="let element"> {{element.estado}} </td>
+        </ng-container>
+      
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="fecha">
+          <th mat-header-cell *matHeaderCellDef> Fecha </th>
+          <td mat-cell *matCellDef="let element"> {{element.fecha| date:'dd/MM/yyyy'}} </td>
+        </ng-container>
+        <ng-container matColumnDef="acciones">
+            <th mat-header-cell *matHeaderCellDef> Acciones </th>
+            <td mat-cell *matCellDef="let element " style="text-align:right">
+                <a class="pointer" style="color: #35b21b" matTooltip="Ver vehiculo">
+                    <mat-icon>display_settings</mat-icon>
+                </a>
+                 <a (click)="openEdit(element)" class="pointer" style="color: #1190dc" matTooltip="Editar vehiculo">
+                    <mat-icon>edit</mat-icon>
+                </a>
+
+                <a  class="pointer" style="color: #e15639" matTooltip="Eliminar vehiculo">
+                    <mat-icon>delete</mat-icon>
+                </a>
+            </td>
+          </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <mat-paginator [length]="100"
+              [pageSize]="10"
+              [pageSizeOptions]="[5, 10, 25, 100]"
+              aria-label="Select page">
+      </mat-paginator>
+</div>
+

@@ -7,7 +7,6 @@ import { MatTableDataSource } from '@angular/material/table';
 import { DialogVehiculoComponent } from './dialog/dialogvehiculo.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
 import { Vehiculo } from 'src/app/models/Vehiculos';
 
 @Component({

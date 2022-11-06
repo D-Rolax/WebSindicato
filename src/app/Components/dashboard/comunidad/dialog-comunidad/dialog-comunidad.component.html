@@ -1,0 +1,26 @@
+<p style="color: aliceblue;">Registro Comunidad</p>
+<mat-card>
+    <form [formGroup]="Form" (submit)="addComunidad()">
+        <mat-form-field appearance="fill">
+            <mat-label>Nombre de Comunidad</mat-label>
+            <input type="text" matInput formControlName="nombre" autocomplete="off">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Descripcion</mat-label>
+            <textarea type="text" matInput formControlName="descripcion"autocomplete="off"></textarea>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Estado</mat-label>
+            <mat-select formControlName="estado">
+              <mat-option *ngFor="let item of Estado" [value]="item">
+                {{item}}
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </form>
+</mat-card>
+<div style="margin-top: 8px;">
+    <button style="width: 122px; margin-right: 4px;" (click)="addComunidad()" type="submit" mat-raised-button color="primary">Guardar</button>
+    <button style="width: 122px;margin-left: 3px;" (click)="close()" mat-raised-button >Cancelar</button>
+</div>
+

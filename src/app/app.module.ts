@@ -12,7 +12,8 @@ import { LoginComponent } from './Components/login/login.component';
 import { HomeComponent } from './home/home.component';
 import { FormsModule } from '@angular/forms';
 import { DialogDeleteComponent } from './common/delete/dialogdelete.component';
-import{JwtInterceptor} from './Security/jwt.interceptor'
+import{JwtInterceptor} from './Security/jwt.interceptor';
+
 
 
 @NgModule({
@@ -22,7 +23,7 @@ import{JwtInterceptor} from './Security/jwt.interceptor'
     LoginComponent,
     DialogVehiculoComponent,
     DialogDeleteComponent,
-    LoginComponent
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
